@@ -1,0 +1,61 @@
+<?php
+/**
+ * Database configuration for TestLink
+ * Copy this file to config_db.inc.php and configure your database settings
+ */
+
+// Database type: mysql, postgres, mssql
+$g_db_type = 'mysql';
+
+// Database host
+$g_db_host = 'localhost';
+
+// Database port
+$g_db_port = '3306';
+
+// Database name
+$g_db_name = 'testlink';
+
+// Database username
+$g_db_user = 'root';
+
+// Database password
+$g_db_pass = '';
+
+// Database table prefix (leave empty if not using prefix)
+$g_table_prefix = '';
+
+// Database charset
+$g_db_charset = 'utf8';
+
+// Database collation
+$g_db_collation = 'utf8_general_ci';
+
+// Database connection options
+$g_db_options = array(
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+);
+
+// Database connection string
+$g_db_connection_string = "mysql:host={$g_db_host};port={$g_db_port};dbname={$g_db_name};charset={$g_db_charset}";
+
+// Database connection
+try {
+    $g_db = new PDO($g_db_connection_string, $g_db_user, $g_db_pass, $g_db_options);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
+
+// Define database constants
+define('DB_TYPE', $g_db_type);
+define('DB_HOST', $g_db_host);
+define('DB_PORT', $g_db_port);
+define('DB_NAME', $g_db_name);
+define('DB_USER', $g_db_user);
+define('DB_PASS', $g_db_pass);
+define('DB_TABLE_PREFIX', $g_table_prefix);
+define('DB_CHARSET', $g_db_charset);
+define('DB_COLLATION', $g_db_collation);
+?>
